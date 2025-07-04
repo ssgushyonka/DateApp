@@ -13,6 +13,19 @@ final class ProfileCell: UICollectionViewCell {
         return iv
     }()
 
+    private let gradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.colors = [
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor,
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0.52).cgColor,
+            UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor
+        ]
+        gradient.locations = [0, 0.4, 1.0]
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+        return gradient
+    }()
+
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.customFont(.latoExtraBold, size: 15)
@@ -87,10 +100,17 @@ final class ProfileCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
+        imageView.layer.insertSublayer(gradientLayer, at: 0)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradientLayer.frame = imageView.bounds
+        gradientLayer.cornerRadius = imageView.layer.cornerRadius
     }
 
     private func setupViews() {
@@ -104,9 +124,8 @@ final class ProfileCell: UICollectionViewCell {
         
         contentView.layer.cornerRadius = 12
         contentView.layer.masksToBounds = true
-        contentView.backgroundColor = .systemGray5
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -144,7 +163,9 @@ final class ProfileCell: UICollectionViewCell {
 
     func configure(with profile: Profile) {
         nameLabel.text = "\(profile.name), \(profile.age)"
-
+        DispatchQueue.main.async {
+            self.gradientLayer.frame = self.imageView.bounds
+        }
         if let onlineLabel = onlineIndicator.subviews.first as? UILabel,
            let onlineCircle = onlineIndicator.subviews.last {
             onlineLabel.text = profile.isOnline ? "online" : "offline"
@@ -167,6 +188,7 @@ final class ProfileCell: UICollectionViewCell {
         ImageCache.shared.loadImage(from: url) { [weak self] image in
             DispatchQueue.main.async {
                 self?.imageView.image = image
+                self?.gradientLayer.frame = self?.imageView.bounds ?? .zero
             }
         }
     }

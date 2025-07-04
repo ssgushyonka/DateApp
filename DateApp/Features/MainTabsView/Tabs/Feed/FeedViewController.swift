@@ -18,7 +18,7 @@ final class FeedViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-    
+
     private lazy var tabLabel: UILabel = {
         let label = UILabel()
         label.text = "Feed"
@@ -27,11 +27,45 @@ final class FeedViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
+    private lazy var coinsCountView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .silver
+        view.layer.cornerRadius = 17
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        
+        let label = UILabel()
+        label.font = UIFont.customFont(.latoSemibold, size: 14)
+        label.textColor = .white
+        label.text = "78"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let coinImage = UIImageView()
+        coinImage.image = UIImage(named: "icon-coin")
+        coinImage.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        view.addSubview(coinImage)
+
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 13),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            coinImage.heightAnchor.constraint(equalToConstant: 24),
+            coinImage.widthAnchor.constraint(equalToConstant: 24),
+            coinImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            coinImage.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 6),
+            
+            view.heightAnchor.constraint(equalToConstant: 32),
+            view.widthAnchor.constraint(equalToConstant: 64)
+        ])
+        return view
+    }()
     
     private lazy var feedTypeSegments: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 20
+        stack.spacing = 27
         stack.alignment = .center
 
         let normalColor: UIColor = .silver
@@ -71,14 +105,18 @@ final class FeedViewController: UIViewController {
     private func setupViews() {
         view.addSubview(collectionView)
         view.addSubview(tabLabel)
+        view.addSubview(coinsCountView)
         view.addSubview(feedTypeSegments)
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             tabLabel.heightAnchor.constraint(equalToConstant: 24),
-            tabLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 44),
+            tabLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
             tabLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 17),
+            
+            coinsCountView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            coinsCountView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             
             feedTypeSegments.heightAnchor.constraint(equalToConstant: 22),
             feedTypeSegments.topAnchor.constraint(equalTo: tabLabel.bottomAnchor, constant: 15),

@@ -1,4 +1,5 @@
 import UIKit
+import SafariServices
 
 final class PayWallViewController: UIViewController {
     private let viewModel = PayWallViewModel()
@@ -107,9 +108,48 @@ final class PayWallViewController: UIViewController {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
+    
+    private lazy var termsButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.customFont(.latoRegular, size: 13),
+            .foregroundColor: UIColor.white,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        
+        let attributedTitle = NSAttributedString(
+            string: "Terms Of Use",
+            attributes: attributes
+        )
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private lazy var policyButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.customFont(.latoRegular, size: 13),
+            .foregroundColor: UIColor.white,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+
+        let attributedTitle = NSAttributedString(
+            string: "Privacy & Policy",
+            attributes: attributes
+        )
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.clipsToBounds = true
         setupViews()
         setupConstraints()
     }
@@ -136,6 +176,8 @@ final class PayWallViewController: UIViewController {
         view.addSubview(closeButton)
         view.addSubview(restoreButton)
         view.addSubview(subscribeButton)
+        view.addSubview(termsButton)
+        view.addSubview(policyButton)
     }
 
     private func setupConstraints() {
@@ -177,13 +219,26 @@ final class PayWallViewController: UIViewController {
             subscribeButton.heightAnchor.constraint(equalToConstant: PaywallLayout.Buttons.subButtonHeight),
             subscribeButton.topAnchor.constraint(equalTo: subLabel.bottomAnchor, constant: PaywallLayout.Buttons.subButtonTopSpace),
             subscribeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: PaywallLayout.Buttons.subButtonLeading),
-            subscribeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -PaywallLayout.Buttons.subButtonLeading)
+            subscribeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -PaywallLayout.Buttons.subButtonLeading),
+            
+            termsButton.topAnchor.constraint(equalTo: subscribeButton.bottomAnchor, constant: 14),
+            termsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 43),
+            
+            policyButton.topAnchor.constraint(equalTo: subscribeButton.bottomAnchor, constant: 14),
+            policyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -43)
         ])
     }
 
     @objc
     private func closeButtonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc private func openWebsite() {
+        guard let url = URL(string: "https://www.apple.com") else { return }
+        
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
     }
     
     @objc
@@ -194,7 +249,7 @@ final class PayWallViewController: UIViewController {
             if success {
                 print("Purchases have been successfully restored")
             } else {
-                print("Error")
+                print("Error") // по хорошему тут алерты
             }
         }
     }
