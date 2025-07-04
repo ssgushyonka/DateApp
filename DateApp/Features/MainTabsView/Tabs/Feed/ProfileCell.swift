@@ -126,6 +126,7 @@ final class ProfileCell: UICollectionViewCell {
         contentView.layer.masksToBounds = true
     }
 
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -133,31 +134,42 @@ final class ProfileCell: UICollectionViewCell {
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            onlineIndicator.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            onlineIndicator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 9),
+            onlineIndicator.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                                 constant: ProfileCellConstants.OnlineIndicator.topInset),
+            onlineIndicator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                     constant: ProfileCellConstants.OnlineIndicator.leadingInset),
             
-            countryImageView.heightAnchor.constraint(equalToConstant: 14),
-            countryImageView.widthAnchor.constraint(equalToConstant: 14),
-            countryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 41),
-            countryImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 168),
+            countryImageView.heightAnchor.constraint(equalToConstant: ProfileCellConstants.CountryImageView.size),
+            countryImageView.widthAnchor.constraint(equalToConstant: ProfileCellConstants.CountryImageView.size),
+            countryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                      constant: ProfileCellConstants.CountryImageView.leadingInset),
+            countryImageView.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                                  constant: ProfileCellConstants.CountryImageView.topInset),
             
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 166),
-            nameLabel.leadingAnchor.constraint(equalTo: countryImageView.trailingAnchor, constant: 5),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                           constant: ProfileCellConstants.NameLabel.topInset),
+            nameLabel.leadingAnchor.constraint(equalTo: countryImageView.trailingAnchor,
+                                               constant: ProfileCellConstants.NameLabel.leadingOffset),
             
-            chatButton.heightAnchor.constraint(equalToConstant: 21),
-            chatButton.widthAnchor.constraint(equalToConstant: 21),
-            chatButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -18),
-            chatButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 23),
+            chatButton.heightAnchor.constraint(equalToConstant: ProfileCellConstants.ChatButton.size),
+            chatButton.widthAnchor.constraint(equalToConstant: ProfileCellConstants.ChatButton.size),
+            chatButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                               constant: -ProfileCellConstants.ChatButton.bottomInset),
+            chatButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                constant: ProfileCellConstants.ChatButton.leadingInset),
             
-            callButton.heightAnchor.constraint(equalToConstant: 32),
-            callButton.widthAnchor.constraint(equalToConstant: 32),
-            callButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -13),
+            callButton.heightAnchor.constraint(equalToConstant: ProfileCellConstants.CallButton.size),
+            callButton.widthAnchor.constraint(equalToConstant: ProfileCellConstants.CallButton.size),
+            callButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                               constant: -ProfileCellConstants.CallButton.bottomInset),
             callButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
-            likeButton.heightAnchor.constraint(equalToConstant: 21),
-            likeButton.widthAnchor.constraint(equalToConstant: 21),
-            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -18),
-            likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25)
+            likeButton.heightAnchor.constraint(equalToConstant: ProfileCellConstants.LikeButton.size),
+            likeButton.widthAnchor.constraint(equalToConstant: ProfileCellConstants.LikeButton.size),
+            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                               constant: -ProfileCellConstants.LikeButton.bottomInset),
+            likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                 constant: -ProfileCellConstants.LikeButton.trailingInset)
         ])
     }
 

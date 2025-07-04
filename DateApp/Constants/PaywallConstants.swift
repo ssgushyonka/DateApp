@@ -27,7 +27,7 @@ enum PaywallLayout {
     }
 
     enum PageControl {
-        static let bottomInset: CGFloat = 243
+        static let bottomInset: CGFloat = -260
     }
 
     enum Buttons {
@@ -43,6 +43,9 @@ enum PaywallLayout {
         static let subButtonHeight: CGFloat = 48
         static let subButtonLeading: CGFloat = 32
         static let subButtonTopSpace: CGFloat = 19
+        
+        static let termsPolicyButtonTop: CGFloat = 14
+        static let termsPolicyButtonLeading: CGFloat = 43
     }
 }
 

@@ -28,6 +28,42 @@ final class StepCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configureTitleLabel(with step: PayWallStep) {
+        let fullText = step.title
+        let attributedString = NSMutableAttributedString(
+            string: fullText,
+            attributes: [.foregroundColor: UIColor.title]
+        )
+        
+        let wordsToColor: [String]
+        switch step.imageName {
+        case "img-1":
+            wordsToColor = ["599 coins"]
+        case "img-2":
+            wordsToColor = ["Unlimited messages"]
+        case "img-3":
+            wordsToColor = ["Turn Off"]
+        case "img-4":
+            wordsToColor = ["VIP Status"]
+        default:
+            wordsToColor = []
+        }
+        
+        let pinkColor = UIColor.titlePink
+        for word in wordsToColor {
+            let range = (fullText as NSString).range(of: word)
+            if range.location != NSNotFound {
+                attributedString.addAttribute(
+                    .foregroundColor,
+                    value: pinkColor,
+                    range: range
+                )
+            }
+        }
+        
+        titleLabel.attributedText = attributedString
+    }
 
     private func setupViews() {
         contentView.addSubview(titleLabel)

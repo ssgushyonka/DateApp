@@ -111,21 +111,28 @@ final class FeedViewController: UIViewController {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            tabLabel.heightAnchor.constraint(equalToConstant: 24),
-            tabLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
-            tabLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 17),
+            tabLabel.heightAnchor.constraint(equalToConstant: FeedTabConstants.TabLabel.height),
+            tabLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                        constant: FeedTabConstants.TabLabel.topInset),
+            tabLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                            constant: FeedTabConstants.TabLabel.leadingInset),
             
-            coinsCountView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            coinsCountView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            coinsCountView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                              constant: FeedTabConstants.CoinsCountView.topInset),
+            coinsCountView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                   constant: -FeedTabConstants.CoinsCountView.trailingInset),
             
-            feedTypeSegments.heightAnchor.constraint(equalToConstant: 22),
-            feedTypeSegments.topAnchor.constraint(equalTo: tabLabel.bottomAnchor, constant: 15),
-            feedTypeSegments.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            feedTypeSegments.heightAnchor.constraint(equalToConstant: FeedTabConstants.FeedTypeSegments.height),
+            feedTypeSegments.topAnchor.constraint(equalTo: tabLabel.bottomAnchor,
+                                                constant: FeedTabConstants.FeedTypeSegments.topInset),
+            feedTypeSegments.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                    constant: FeedTabConstants.FeedTypeSegments.leadingInset),
             
-            collectionView.topAnchor.constraint(equalTo: feedTypeSegments.bottomAnchor, constant: 19),
+            collectionView.topAnchor.constraint(equalTo: feedTypeSegments.bottomAnchor,
+                                              constant: FeedTabConstants.CollectionView.topInset),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 

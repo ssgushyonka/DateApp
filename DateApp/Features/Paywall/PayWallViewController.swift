@@ -202,7 +202,7 @@ final class PayWallViewController: UIViewController {
             restoreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: PaywallLayout.Buttons.restoreButtonTrailing),
 
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -260),
+            pageControl.topAnchor.constraint(equalTo: view.bottomAnchor, constant: PaywallLayout.PageControl.bottomInset),
 
             mainLabel.heightAnchor.constraint(equalToConstant: PaywallLayout.Labels.mainLabelHeight),
             mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -221,11 +221,11 @@ final class PayWallViewController: UIViewController {
             subscribeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: PaywallLayout.Buttons.subButtonLeading),
             subscribeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -PaywallLayout.Buttons.subButtonLeading),
             
-            termsButton.topAnchor.constraint(equalTo: subscribeButton.bottomAnchor, constant: 14),
-            termsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 43),
+            termsButton.topAnchor.constraint(equalTo: subscribeButton.bottomAnchor, constant: PaywallLayout.Buttons.termsPolicyButtonTop),
+            termsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: PaywallLayout.Buttons.termsPolicyButtonLeading),
             
-            policyButton.topAnchor.constraint(equalTo: subscribeButton.bottomAnchor, constant: 14),
-            policyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -43)
+            policyButton.topAnchor.constraint(equalTo: subscribeButton.bottomAnchor, constant: PaywallLayout.Buttons.termsPolicyButtonTop),
+            policyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -PaywallLayout.Buttons.termsPolicyButtonLeading)
         ])
     }
 
@@ -278,6 +278,7 @@ extension PayWallViewController: UICollectionViewDataSource, UICollectionViewDel
         let step = viewModel.steps[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StepCell", for: indexPath) as! StepCollectionViewCell
         cell.configure(with: step)
+        cell.configureTitleLabel(with: step)
         return cell
     }
 
