@@ -1,7 +1,5 @@
 import UIKit
 
-import UIKit
-
 enum GradientElements {
     static func suscribeButtonGradient(frame: CGRect, cornerRadius: CGFloat = 24) -> CAGradientLayer {
         let gradient = CAGradientLayer()

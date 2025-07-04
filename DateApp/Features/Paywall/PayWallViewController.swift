@@ -81,6 +81,7 @@ final class PayWallViewController: UIViewController {
         button.setImage(UIImage(named: "icon-close"), for: .normal)
         button.tintColor = .silver
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -176,6 +177,11 @@ final class PayWallViewController: UIViewController {
             subscribeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: PaywallLayout.Buttons.subButtonLeading),
             subscribeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -PaywallLayout.Buttons.subButtonLeading)
         ])
+    }
+
+    @objc
+    private func closeButtonTapped() {
+        dismiss(animated: true)
     }
 }
 

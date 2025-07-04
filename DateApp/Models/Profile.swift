@@ -15,3 +15,7 @@ struct Profile: Decodable {
         case isOnline = "is_online"
     }
 }
+
+struct ProfilesResponse: Decodable {
+    let profiles: [Profile]
+}
