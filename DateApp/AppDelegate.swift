@@ -5,6 +5,7 @@
 //  Created by Элина Борисова on 03.07.2025.
 //
 
+import ApphudSDK
 import UIKit
 
 @main
@@ -14,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        Apphud.start(apiKey: "") // тут должен быть ключ, так что будут сообщения your API Key is invalid
+        SubscriptionManager.shared.getProducts()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.showPaywall()
         }

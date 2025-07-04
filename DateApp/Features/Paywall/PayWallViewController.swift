@@ -73,6 +73,7 @@ final class PayWallViewController: UIViewController {
         button.layer.cornerRadius = 24
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(subscribeTapped), for: .touchUpInside)
         return button
     }()
     
@@ -93,6 +94,7 @@ final class PayWallViewController: UIViewController {
         button.tintColor = .clear
         button.setTitleColor(.silver, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(restoreTapped), for: .touchUpInside)
         return button
     }()
 
@@ -182,6 +184,33 @@ final class PayWallViewController: UIViewController {
     @objc
     private func closeButtonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc
+    private func restoreTapped() {
+        Task {
+            let success = await SubscriptionManager.shared.restorePurchase()
+
+            if success {
+                print("Purchases have been successfully restored")
+            } else {
+                print("Error")
+            }
+        }
+    }
+    
+    @objc private func subscribeTapped() {
+        if let product = SubscriptionManager.shared.trialProduct {
+            SubscriptionManager.shared.buySubscription(product) { success in
+                if success {
+                    print("Success")
+                } else {
+                    print("Error")
+                }
+            }
+        } else {
+            print("Error")
+        }
     }
 }
 
