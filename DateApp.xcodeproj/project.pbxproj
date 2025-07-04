@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		32FB23192E17EA6E00FB432B /* ApphudSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 32FB23182E17EA6E00FB432B /* ApphudSDK */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		32A8FCC52E166437005EE877 /* DateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32FB23192E17EA6E00FB432B /* ApphudSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = DateApp;
 			packageProductDependencies = (
+				32FB23182E17EA6E00FB432B /* ApphudSDK */,
 			);
 			productName = DateApp;
 			productReference = 32A8FCC52E166437005EE877 /* DateApp.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 32A8FCBC2E166437005EE877;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				32FB23172E17EA6E00FB432B /* XCRemoteSwiftPackageReference "ApphudSDK" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 32A8FCC62E166437005EE877 /* Products */;
 			projectDirPath = "";
@@ -343,6 +352,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		32FB23172E17EA6E00FB432B /* XCRemoteSwiftPackageReference "ApphudSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apphud/ApphudSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.6.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		32FB23182E17EA6E00FB432B /* ApphudSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 32FB23172E17EA6E00FB432B /* XCRemoteSwiftPackageReference "ApphudSDK" */;
+			productName = ApphudSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 32A8FCBD2E166437005EE877 /* Project object */;
 }
