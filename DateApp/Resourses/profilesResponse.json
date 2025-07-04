@@ -1,0 +1,74 @@
+{
+  "profiles": [
+    {
+      "name": "Sophia",
+      "age": 24,
+      "country": "USA",
+      "image_url": "",
+      "is_online": true
+    },
+    {
+      "name": "Emma",
+      "age": 22,
+      "country": "Canada",
+      "image_url": "",
+      "is_online": false
+    },
+    {
+      "name": "Olivia",
+      "age": 27,
+      "country": "UK",
+      "image_url": "",
+      "is_online": true
+    },
+    {
+      "name": "Ava",
+      "age": 25,
+      "country": "Australia",
+      "image_url": "",
+      "is_online": true
+    },
+    {
+      "name": "Isabella",
+      "age": 23,
+      "country": "France",
+      "image_url": "",
+      "is_online": false
+    },
+    {
+      "name": "Mia",
+      "age": 26,
+      "country": "Germany",
+      "image_url": "",
+      "is_online": true
+    },
+    {
+      "name": "Charlotte",
+      "age": 24,
+      "country": "Spain",
+      "image_url": "",
+      "is_online": false
+    },
+    {
+      "name": "Amelia",
+      "age": 28,
+      "country": "Italy",
+      "image_url": "",
+      "is_online": true
+    },
+    {
+      "name": "Harper",
+      "age": 21,
+      "country": "USA",
+      "image_url": "",
+      "is_online": false
+    },
+    {
+      "name": "Evelyn",
+      "age": 29,
+      "country": "Canada",
+      "image_url": "",
+      "is_online": true
+    }
+  ]
+}

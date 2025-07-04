@@ -1,6 +1,6 @@
 import UIKit
 
-final class GradientView: UIView {
+final class PaywallGradientView: UIView {
     private let firstGradient = CAGradientLayer()
     private let secondGradient = CAGradientLayer()
 
